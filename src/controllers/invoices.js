@@ -4,7 +4,7 @@ module.exports = function(models) {
   return {
   
     create: function(req, res, next) {
-      if (Number(req.body.amount) > 0) {
+      if (Number(req.body.amount) >= 0.01) {
         models.Invoice.generate({
           amount: req.body.amount,
           data: req.body.data
@@ -17,7 +17,7 @@ module.exports = function(models) {
         })
         .error(next)
       } else {
-        next(new Error('amount must be greater than 0'))
+        next(new Error('amount must be greater than 0.01'))
       }
     },
 
