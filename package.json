@@ -7,7 +7,8 @@
     "test": "npm run build && mocha -R spec build/test/**/*.js",
     "start": "npm run build && node build/bridges",
     "build": "gulp",
-    "db:create": "sudo -u $USER psql -c \"create database $DATABASE_NAME with owner $DATABASE_USER encoding='utf8'\""
+    "db:create": "sudo -u $USER psql -c \"create database $DATABASE_NAME with owner $DATABASE_USER encoding='utf8'\"",
+    "db:migrate": "knex --knexfile src/knexfile.js migrate:latest"
   },
   "author": "",
   "license": "ISC",
