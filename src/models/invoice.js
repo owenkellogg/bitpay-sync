@@ -42,7 +42,7 @@ module.exports = function(bookshelf) {
           return invoice.set({
             url    : payment.url,
             data   : payment.posData,
-            amount : payment.btcPaid,
+            amount : Number(payment.btcPaid),
             paid   : true,
             state  : 'incoming',
           }).save()

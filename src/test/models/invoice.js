@@ -46,6 +46,7 @@ describe('Invoice Model', function() {
     Invoice.pay(fixture).then(function(invoice) {
       assert.strictEqual(invoice.get('paid'), true);
       assert.strictEqual(invoice.get('state'), 'incoming');
+      assert.strictEqual(invoice.get('amount'), Number(fixture.btcPaid));
       done();
     });
   });
