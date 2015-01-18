@@ -3,7 +3,7 @@ module.exports = function(models) {
 
   return {
 
-    incoming: function(req, res, next) {
+    index: function(req, res, next) {
 
       models.Invoice.query({ where: {
         state: 'incoming',
@@ -21,8 +21,11 @@ module.exports = function(models) {
   
     clear: function(req, res, next) {
       
-      models.Invoice.fetch({ id: req.params.id })
+      new models.Invoice({ id: req.params.id }).fetch()
         .then(function(invoice) {
+          if (!invoice) {
+            next(new Error('invoice not found'));
+          }
           return invoice.set({ state: 'cleared' }).save()
             .then(function(invoice) {
               res.status(200).send({

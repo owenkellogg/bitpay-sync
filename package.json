@@ -1,8 +1,8 @@
 {
-  "name": "MyBridgesApp",
-  "version": "0.1.1",
-  "description": "Auto-generated Bridges Node.js application",
-  "main": "index.js",
+  "name": "bitpay-sync",
+  "version": "0.2.0",
+  "description": "Generate and be notified of Bitpay payment invoices",
+  "main": "build/index.js",
   "scripts": {
     "test": "npm run build && mocha -R spec build/test/**/*.js",
     "start": "npm run build && node build/bridges",
