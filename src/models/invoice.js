@@ -22,6 +22,9 @@ module.exports = function(bookshelf) {
       })
       .save()
     },
+    getStatus: function() {
+      return invoiceGenerator.getInvoiceStatus(this.get('id'))
+    },
     hasTimestamps: ['createdAt', 'updatedAt'] 
   }, {
     pay: Promise.method(function(payment) {
@@ -30,6 +33,14 @@ module.exports = function(bookshelf) {
       }
       return new this({ id: payment.id }).fetch()
         .then(function(invoice) {
+          invoice.getStatus().then(function(response) {
+            if (!response.status === 'confirmed') {
+              return Promise.reject(new Error('payment not confirmed'));
+            }
+            if (Number(response.btcPaid) !== Number(invoice.get('amount'))) {
+              return Promise.reject(new Error('payment amount does not match'));
+            }
+          })
           if (!invoice) {
             return Promise.reject(new Error('invoice not found'));
           }
