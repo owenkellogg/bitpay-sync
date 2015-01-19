@@ -7,7 +7,7 @@ InvoiceGenerator.prototype.getInvoiceStatus = function(id) {
 
     return http
       .get('https://bitpay.com/api/invoice/'+id)
-      .auth(this.apiKey, '')
+      .auth(process.env['BITPAY_API_KEY'], '')
       .end(function(error, response) {
         if (error) { return reject(error) }
         resolve(response.body)
