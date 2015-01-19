@@ -1,6 +1,6 @@
 {
   "name": "bitpay-sync",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Generate and be notified of Bitpay payment invoices",
   "main": "build/index.js",
   "scripts": {
