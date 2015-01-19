@@ -13,7 +13,7 @@ module.exports = function(models) {
       .then(function(invoices) {
         res.status(200).send({
           success: true,
-          payments: invoices
+          notifications: invoices
         });
       })
       .error(next);
@@ -30,7 +30,7 @@ module.exports = function(models) {
             .then(function(invoice) {
               res.status(200).send({
                 success: true,
-                payment: invoice
+                notification: invoice
               });
             })
         })
